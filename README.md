@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # testdata-generator
 
 > Creates trees of JSON data to be used for mocking HTTP requests from real data in unit tests
@@ -18,7 +17,7 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('testdata-generator');
 ```
 
-## The "testdata_generator" task
+## The "testdata" task
 
 ### Overview
 In your project's Gruntfile, add a section named `testdata` to the data object passed into `grunt.initConfig()`.
@@ -92,7 +91,3 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 0.1.0 - Initial release
-=======
-testdata-generator
-==================
->>>>>>> bccd6e5e3fca8a80ca587bfe6e33f5875c3d06ca
