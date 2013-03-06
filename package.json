@@ -1,0 +1,47 @@
+{
+  "name": "testdata-generator",
+  "description": "Creates trees of JSON data to be used for mocking HTTP requests from real data in unit tests",
+  "version": "0.1.0",
+  "homepage": "https://github.com/dariusriggins/testdata-generator",
+  "author": {
+    "name": "Darius Riggins",
+    "email": "simovate@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dariusriggins/testdata-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dariusriggins/testdata-generator/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/dariusriggins/testdata-generator/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "pretty-data": "*",
+    "request": "*",
+    "grunt": "~0.4.0",
+    "async": "*",
+    "underscore": "*",
+    "q": "*"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.0"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
