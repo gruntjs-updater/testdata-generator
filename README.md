@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # testdata-generator
 
 > Creates trees of JSON data to be used for mocking HTTP requests from real data in unit tests
@@ -11,7 +12,7 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 npm install testdata-generator --save-dev
 ```
 
-One the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
 grunt.loadNpmTasks('testdata-generator');
@@ -20,70 +21,78 @@ grunt.loadNpmTasks('testdata-generator');
 ## The "testdata_generator" task
 
 ### Overview
-In your project's Gruntfile, add a section named `testdata_generator` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `testdata` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  testdata_generator: {
+  testdata: {
     options: {
-      // Task-specific options go here.
+      config: 'testdata-map.js or location of map config',
+      target: 'testdata.js or the destination of the output',
+      server: 'default server to pull data from, defaults to localhost'
     },
     your_target: {
-      // Target-specific file lists and/or options go here.
+      users: ['driggins', 'HopeZ', 'Any other users to generate']
     },
   },
 })
 ```
-
-### Options
-
-#### options.separator
-Type: `String`
-Default value: `',  '`
-
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+#### Test map
+This is a comprehensive example, demonstrating all of the features used in one map.
 
 ```js
-grunt.initConfig({
-  testdata_generator: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
+var refdataSize = 1;
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+function createSearchAddress(path) {
+  return function (node) {
+    return node.common.GET.search.data + path;
+  }
+}
 
-```js
-grunt.initConfig({
-  testdata_generator: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+module.exports = {
+  common: {
+    GET: {
+      me: '/api/users/me',
+
+      search: '/api/search/nextavailableserver',
+
+      refData: {
+        divisions: createSearchAddress('division/_search?size=' + refdataSize),
+        networks: createSearchAddress('network/_search?size=' + refdataSize),
+        demographics: createSearchAddress('demographic/_search?size=' + refdataSize),
+        properties: createSearchAddress('property/_search?size=' + refdataSize),
+        rateCardTypes: createSearchAddress('ratecardtype/_search?size=' + refdataSize),
+        revenueTypes: createSearchAddress('revenuetype/_search?size=' + refdataSize),
+        productCategories: createSearchAddress('productcategory/_search?size=' + refdataSize),
+        priceBreaks: createSearchAddress('pricebreak/_search?size=' + refdataSize),
+        sellingPeriods: createSearchAddress('sellingperiod/_search?size=' + refdataSize)
+      },
+
+      brandSearch: {
+        address: function (node) {
+          return node.common.GET.search.data + 'division/_search?size=1';
+        }
+      }
+    }
   },
-})
+
+  dealHeader: {
+    POST: {
+      newDeal: '/api/deal'
+    }
+  }
+};
 ```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+0.1.0 - Initial release
+=======
+testdata-generator
+==================
+>>>>>>> bccd6e5e3fca8a80ca587bfe6e33f5875c3d06ca
