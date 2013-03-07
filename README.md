@@ -1,6 +1,6 @@
 # testdata-generator
 
-> Creates trees of JSON data to be used for mocking HTTP requests from real data in unit tests
+> Creates trees of JSON data to be used for mocking HTTP requests from real data in unit tests. Assumes that the environment you are generating over uses an X-Impersonate header in order to get data from the context of different users.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.0`
@@ -26,11 +26,11 @@ In your project's Gruntfile, add a section named `testdata` to the data object p
 grunt.initConfig({
   testdata: {
     options: {
-      config: 'testdata-map.js or location of map config',
-      target: 'testdata.js or the destination of the output',
       server: 'default server to pull data from, defaults to localhost'
     },
-    your_target: {
+    dev: {
+      src: 'testdata-map.js',
+      dest: 'testdata.js',
       users: ['driggins', 'HopeZ', 'Any other users to generate']
     },
   },
@@ -91,3 +91,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 0.1.1 - Initial release
+0.1.2 - Bug Fixes
+0.1.3 - Bug Fixes
+0.1.4 - Switch to use dest/src and move to unit level for config

@@ -1,7 +1,7 @@
 {
   "name": "testdata-generator",
   "description": "Creates trees of JSON data to be used for mocking HTTP requests from real data in unit tests",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://github.com/dariusriggins/testdata-generator",
   "author": {
     "name": "Darius Riggins",

@@ -22,17 +22,25 @@ module.exports = function(grunt) {
     var options = this.options();
     var done = this.async();
     var output = {};
+    var self = this;
 
-    server = options.server;
+    server = options.server || 'http://localhost';
 
-    var map = require('./../' + options.config);
+    var map;
+
+    try {
+      map = require('../../' + this.files[0].src);
+    } catch (e) {
+      map = require('../' + this.files[0].src);
+    }
+
     var users = _.map(this.data.users, function(user) {
       return processUser(user, output, map);
     });
 
     async.series(users, function () {
       var testStatement = 'window.testData = ';
-      grunt.file.write(options.target, testStatement + pd.json(output));
+      grunt.file.write(self.files[0].dest, testStatement + pd.json(output));
       grunt.log.writeln('Generated file successfully!');
     });
   });

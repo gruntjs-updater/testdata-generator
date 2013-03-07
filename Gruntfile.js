@@ -31,12 +31,12 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     testdata: {
       options: {
-        config: 'testdata-map.js',
-        target: 'testdata.js',
         server: 'http://tbs-driggins'
       },
 
-      dev: {
+      unit_tests: {
+        src: 'testdata-map.js',
+        dest: 'testdata.js',
         users: ['driggins', 'HopeZ']
       }
     },
