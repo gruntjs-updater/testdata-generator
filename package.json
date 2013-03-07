@@ -29,7 +29,9 @@
   },
   "dependencies": {
     "async": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "request": "*",
+    "pretty-data": "*"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.1.1",
