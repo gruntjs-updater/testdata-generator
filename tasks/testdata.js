@@ -29,8 +29,10 @@ module.exports = function(grunt) {
     var map;
 
     try {
-      map = require('../../' + this.files[0].src);
+      /* For consumers */
+      map = require('../../../' + this.files[0].src);
     } catch (e) {
+      /* For dev */
       map = require('../' + this.files[0].src);
     }
 
