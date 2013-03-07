@@ -9,8 +9,6 @@
 'use strict';
 
 var http= require('http');
-var _ = require('underscore');
-var Q = require('q');
 var async = require('async');
 var request = require('request');
 

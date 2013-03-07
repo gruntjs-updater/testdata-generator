@@ -10,7 +10,6 @@
 
 var http= require('http');
 var _ = require('underscore');
-var Q = require('q');
 var async = require('async');
 var httpJson = require('./http-json');
 var pd = require('pretty-data').pd;
