@@ -100,6 +100,10 @@ module.exports = function(grunt) {
           address = entry.address(outerNode);
         } else {
           address = entry(outerNode);
+          if (_.isObject(address)) {
+            postData = address.data;
+            address = address.address;
+          }
         }
         currentServer = '';
         grunt.log.debug('Transformed address is ' + address);
