@@ -100,6 +100,13 @@ module.exports = function(grunt) {
           address = entry.address(outerNode);
         } else {
           address = entry(outerNode);
+
+          if (!address) {
+            node.data = [];
+            grunt.log.debug('Empty result of function, setting data to empty array');
+            return callback();
+          }
+
           if (_.isObject(address)) {
             postData = address.data;
             address = address.address;
@@ -123,6 +130,10 @@ module.exports = function(grunt) {
         });
 
         return async.series(subNodes, callback);
+      }
+
+      if (!currentServer && !address.match(/http/)) {
+        currentServer = server;
       }
 
       httpJson.request(currentServer + address, method, postData, function (data) {

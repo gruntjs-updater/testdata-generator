@@ -90,8 +90,21 @@ module.exports = {
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-0.1.1 - Initial release
-0.1.2 - Bug Fixes
-0.1.3 - Bug Fixes
-0.1.4 - Switch to use dest/src and move to unit level for config
-0.1.5 - Fix source path of config file
+```0.1.1
+Initial release
+```
+```0.1.2
+Bug Fixes
+```
+```0.1.3
+Bug Fixes
+```
+```0.1.4
+Switch to use dest/src and move to unit level for config
+```
+```0.1.5
+Fix source path of config file
+```
+```0.1.6
+Fix for functions returning null and reverting to base server
+```
