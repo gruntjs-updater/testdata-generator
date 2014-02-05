@@ -1,7 +1,7 @@
 {
   "name": "testdata-generator",
   "description": "Creates trees of JSON data to be used for mocking HTTP requests from real data in unit tests",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "homepage": "https://github.com/dariusriggins/testdata-generator",
   "author": {
     "name": "Darius Riggins",
@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "async": "*",
-    "lodash": "*",
+    "lodash": ">=2.3.0",
     "request": "*",
     "pretty-data": "*"
   },
@@ -40,8 +40,8 @@
     "pretty-data": "*",
     "request": "*",
     "grunt": "~0.4.0",
-    "async": "*",
-    "lodash": "*"
+    "lodash": ">=2.3.0",
+    "async": "*"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
