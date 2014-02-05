@@ -9,7 +9,7 @@
 'use strict';
 
 var http= require('http');
-var _ = require('underscore');
+var _ = require('lodash');
 var async = require('async');
 var httpJson = require('./http-json');
 var pd = require('pretty-data').pd;
@@ -30,10 +30,10 @@ module.exports = function(grunt) {
 
     try {
       /* For consumers */
-      map = require('../../../' + this.files[0].src);
+      map = require('../../../' + this.files[0].src[0]);
     } catch (e) {
       /* For dev */
-      map = require('../' + this.files[0].src);
+      map = require('../../../' + this.files[0].src[0]);
     }
 
     var users = _.map(this.data.users, function(user) {
