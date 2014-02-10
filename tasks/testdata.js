@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 
   var server;
 
-  grunt.registerMultiTask('testdata', 'Your task description goes here.', function() {
+  grunt.registerMultiTask('testdata', 'Robust generator to create test data from real http requests.', function() {
     var options = this.options();
     var done = this.async();
     var output = {};
@@ -36,22 +36,26 @@ module.exports = function(grunt) {
       map = require('../../../' + this.files[0].src[0]);
     }
 
-    var users = _.map(this.data.users, function(user) {
-      return processUser(user, output, map);
-    });
+    var process = processUser.call(self, output, map);
 
-    async.series(users, function () {
-      var testStatement = 'window.testData = ';
-      grunt.file.write(self.files[0].dest, testStatement + pd.json(output));
+    process(function () {
+      var result = options.transform(pd.json(output.result));
+      grunt.file.write(self.files[0].dest, result);
       grunt.log.writeln('Generated file successfully!');
     });
   });
 
-  function processUser(user, output, map) {
+  function processUser(output, map) {
+    var options = this.options();
+
     return function (callback) {
-      grunt.log.debug('Processing ' + user);
-      var node = output[user] = {};
-      httpJson.setHeaders({ 'X-Impersonate': user });
+      grunt.log.debug('Processing options');
+      var node = output.result = {};
+
+      var headers = options.baseHeaders || {};
+      headers = _.extend(headers, options.headers || {});
+
+      httpJson.setHeaders(headers);
 
       var sections = _.map(map, function (section, name) {
         return processSection(section, name, node);
@@ -139,6 +143,22 @@ module.exports = function(grunt) {
       httpJson.request(currentServer + address, method, postData, function (data) {
         node.address = currentServer + address;
         node.data = data;
+
+        if (data && data.hits && data.hits.hits) {
+          node.data = data.hits.hits;
+
+          if (_.isArray(node.data) && node.data.length && node.data[0].fields) {
+            node.data = _.map(node.data, function (item) {
+              return item.fields;
+            });
+          } else if (_.isArray(node.data) && node.data.length && node.data[0]._source) {
+            node.data = _.pluck(node.data, '_source');
+          }
+        } else if (node.data && node.data.responses) {
+          node.data = _.flatten(_.map(node.data.responses, function (response) {
+            return _.pluck(response.hits.hits, '_source');
+          }));
+        }
 
         callback();
       });
